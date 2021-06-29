@@ -2,38 +2,59 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Imgselect from "./Imgselect";
 class Beast extends React.Component{
    
-      constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-          NumberOfVotes : 0
+        this.wrapper = React.createRef();
+        this.state = {
+            numberOFvotes: 0,
+            show: false
         }
-        
+    }
+
+    increaseVotes = () => {
+        this.setState({
+            numberOFvotes: this.state.numberOFvotes + 1
+        })
+    }
+
+    changeState = () => {
+        let currentState = this.state.show;
+        if (currentState === false) {
+            this.setState({
+                show: true
+            })
+        } else if (currentState === true) {
+            this.setState({
+                show: false
+            })
         }
-    increaseNumOfVotes=()=>{this.setState({
-    NumberOfVotes:this.state.NumberOfVotes +1
-    })}
-    render(){
-    return(
-    <>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={this.props.image_url} />
-      <Card.Body>
-        <Card.Title>horned beasts</Card.Title>
-        <Card.Text>
-         {this.props.description}
-        </Card.Text>
-        <Card.Text>
-        👹 {this.state.NumberOfVotes}
-        </Card.Text>
-        <Button onClick={this.increaseNumOfVotes}variant="primary">click to vote</Button>
-      </Card.Body>
-    </Card>
-    </>
-    )
     }
+
+    render() {
+        return (
+            <>
+                <Imgselect show={this.state.show} changeState={this.changeState} title={this.props.title} description={this.props.description} image_url={this.props.image_url}></Imgselect>
+                <Card style={{ width: '18rem' }} onClick={this.changeState}  ref={this.wrapper}>{this.props.children}
+                    <Card.Img variant="top" src={this.props.image_url} />
+                    <Card.Body>
+                        <Card.Title>{this.props.title}</Card.Title>
+                        <Card.Text>
+                            {this.props.description}
+                        </Card.Text>
+                        <Card.Text>
+                            {this.state.numberOFvotes}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Button onClick={this.increaseVotes}>Vote</Button>
+               
+            </>
+        )
     }
+}
 //     render(){
 
 //         return(
