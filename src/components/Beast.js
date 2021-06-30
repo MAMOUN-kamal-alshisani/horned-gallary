@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Imgselect from "./Imgselect";
+
 class Beast extends React.Component{
    
     constructor(props) {
@@ -12,7 +13,9 @@ class Beast extends React.Component{
             numberOFvotes: 0,
             show: false
         }
+        
     }
+  
 
     increaseVotes = () => {
         this.setState({
@@ -36,7 +39,10 @@ class Beast extends React.Component{
     render() {
         return (
             <>
-                <Imgselect show={this.state.show} changeState={this.changeState} title={this.props.title} description={this.props.description} image_url={this.props.image_url}></Imgselect>
+
+
+
+                <Imgselect show={this.state.show} changeState={this.changeState} title={this.props.title} description={this.props.description} image_url={this.props.image_url}  horns={this.props.horns}></Imgselect>
                 <Card style={{ width: '18rem' }} onClick={this.changeState}  ref={this.wrapper}>{this.props.children}
                     <Card.Img variant="top" src={this.props.image_url} />
                     <Card.Body>
@@ -45,12 +51,17 @@ class Beast extends React.Component{
                             {this.props.description}
                         </Card.Text>
                         <Card.Text>
-                            {this.state.numberOFvotes}
+                         <h5>horns :  {this.props.horns}</h5> 
                         </Card.Text>
+                        <Card.Text>
+                        👹 {this.state.numberOFvotes}
+                        </Card.Text>
+                     
                     </Card.Body>
                 </Card>
                 <Button onClick={this.increaseVotes}>Vote</Button>
                
+
             </>
         )
     }

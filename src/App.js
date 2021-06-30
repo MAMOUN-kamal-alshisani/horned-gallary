@@ -14,8 +14,9 @@ render(){
 
 <Header/>
     <Main/>
+    <Beast/>
     <Footer/>
-  <Beast/>
+  
     </> 
   )
 }
