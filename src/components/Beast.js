@@ -35,7 +35,8 @@ class Beast extends React.Component{
             })
         }
     }
-
+    renderFunction=()=>{
+        this.props.popUpTheCard(this.props.title)}
     render() {
         return (
             <>
