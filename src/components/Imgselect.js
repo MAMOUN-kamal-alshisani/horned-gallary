@@ -13,6 +13,10 @@ class Imgselect extends React.Component {
                     </Modal.Header>
                     <Card.Img variant="top" src={this.props.image_url} />
                     <Modal.Body>{this.props.description}</Modal.Body>
+                    <Modal.Body>horns :{this.props.horns}</Modal.Body>
+                    <Modal.Body>
+                    👹 {this.props.numberOFvotes}
+                    </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.props.changeState}>
                             Close

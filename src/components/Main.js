@@ -1,32 +1,66 @@
 import React from "react";
 import Beast from './Beast';
 import horned from './horned.json';
+import Form from 'react-bootstrap/Form';
 class Main extends React.Component{
+constructor(props){
 
-    render(){
+super(props);
+this.state={TheData: horned}
 
-        
+}
+ShowFilteredImgs=(TheData)=>{
 
+this.setState({TheData});
 
+}
+DisplayFilterdHorns=(event)=>{
 
-return(
+let HornsNumber=Number(event.target.value);
+let BeastImgs= horned;
+if (HornsNumber){
+
+  BeastImgs=horned.filter(item=>item.horns===HornsNumber);
+}
+console.log(BeastImgs);
+this.ShowFilteredImgs(BeastImgs);
+}
+
+  render(){
+    return(
+
+   
+
     <div className="main">
-    {horned.map((item,index)=>{
+<Form>
+  <Form.Group className="forms" >
+    <Form.Label>select by horns</Form.Label>
+    <Form.Control as="select" onChange={this.DisplayFilterdHorns}>
+    <option value="all">all</option>
+      <option value="1">one-horn</option>
+      <option value="2">two-horns</option>
+      <option value="3">three-horns</option>
+      <option value="100">wwooww</option>
+    </Form.Control>
+  </Form.Group>
+</Form>
+
+    {this.state.TheData.map((item,index)=>{
       return(
-      <Beast title ={item.title} description={item.description} image_url={item.image_url} key={index}></Beast>
+       
+    
+      <Beast title ={item.title} description={item.description} image_url={item.image_url} key={index} horns={item.horns}></Beast>
       )
     })}
+ 
       </div>
       )
       
-  /* <Beast title={hornedbeast[0].title} keyword={hornedbeast[0].keyword} horns={'horns : '+hornedbeast[0].horns} description={hornedbeast[0].description} image_url={hornedbeast[0].image_url}  />
-  <Beast title={hornedbeast[1].title} keyword={hornedbeast[1].keyword} horns={'horns : '+ hornedbeast[1].horns} description={hornedbeast[1].description} image_url={hornedbeast[1].image_url} />
-  <Beast title={hornedbeast[2].title} keyword={hornedbeast[2].keyword} horns={'horns : '+ hornedbeast[2].horns} description={hornedbeast[2].description} image_url={hornedbeast[2].image_url} />
-</main> */
+  
     
 
-}
-}
+  }
 
+  }
 
 export default Main;
